@@ -49,4 +49,13 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. 
   config.vm.provision "shell", :path => "provision/bootstrap.sh"
 
+  # run Ansible playbook.
+  config.vm.provision "ansible" do |ansible|
+    ansible.groups = {
+      'myhost' => ['default']
+    }
+    ansible.sudo = true
+    ansible.playbook = "provision/playbook.yml"
+  end
+
 end

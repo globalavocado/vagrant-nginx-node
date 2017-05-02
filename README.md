@@ -9,33 +9,37 @@ Initially, no other software apart from Vagrant should be installed on the host 
 
 ### prerequesites
 
-you only need to have Vagrant installed on your host machine.
-Download it here:
-
-- <a href="https://www.vagrantup.com/downloads.html">Vagrant</a>
+You need to have Vagrant and git installed on your host machine.
+Download it <a href="https://www.vagrantup.com/downloads.html">here</a>.
 
 
 ### installation and deployment
 
-1. clone the repo, and cd into it. You should have a Vagrant file in a directory called vagrant-nginx-node.
+1. Clone the repo and change into that directory. 
+~~~
+  ...# git clone git@github.com:globalavocado/vagrant-nginx-node.git
+  ...# cd vagrant-nginx-node
+~~~
 
-2. start Vagrant:
+2. start the Vagrant box:
 ~~~
-  ... # vagrant up --provision
+  .../vagrant-nginx-node# vagrant up --provision
 ~~~
 
-3. if you need to log in and out of Vagrant do:
+3. you can access the NodeJS app in your browser
+
+	http://localhost:8080
+    
+
+4. to log in and out of your Vagrant box:
 ~~~
-  ... # vagrant ssh
+  .../vagrant-nginx-node# vagrant ssh
   ...
   ... $ logout
 ~~~
 
-
 ## other information
 
-
-*starting the nginx server, spawning two application servers etc...*
-
+*spawning two application servers, load balancing etc...*
 
 

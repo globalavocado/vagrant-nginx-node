@@ -2,15 +2,14 @@
 
 ## objectives
 The goal is to build a Vagrant box that can deploy two Nginx application servers running a Hello World app in NodeJS.
-Initially, no other software apart from Vagrant should be installed on the host machine.
+Apart from Vagrant, no other software should be needed on the host machine.
 
 ## steps
 
 
 ### prerequesites
 
-You need to have Vagrant and git installed on your host machine.
-Download it <a href="https://www.vagrantup.com/downloads.html">here</a>.
+You need to have Vagrant installed on your host machine, which you can get <a href="https://www.vagrantup.com/downloads.html">here</a>.
 
 
 ### installation and deployment
@@ -38,8 +37,8 @@ Download it <a href="https://www.vagrantup.com/downloads.html">here</a>.
   ... $ logout
 ~~~
 
-## other information
+## future development
 
-*spawning two application servers, load balancing etc...*
+*deploy two application servers, load balancing, test they are running etc...*
 
 

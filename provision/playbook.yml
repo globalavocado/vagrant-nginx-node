@@ -2,14 +2,20 @@
 ---
 - name: build an image by running ansible in a container
   hosts: myhost
+  connection: local
 
   tasks:
+
     - name: install docker-py
       pip: name=docker-py state=present
-    - name: build docker image - nginx with sample node app
+
+    - name: build docker image - nginx with sample node app and leave it running
       docker_container:
         name: webserver
         image: richarvey/nginx-nodejs
         ports:
           - "80:80"
+        detach: True
+
+
     

@@ -16,6 +16,11 @@
         ports:
           - "80:80"
         detach: True
-
+    - name: check if nginx is running
+      become: True
+      command: docker exec webserver /bin/sh -c "netstat -anpt|grep nginx"
+      register: vagrant
+    - name: proof below, that nginx is running on port 80
+      debug: var=vagrant.stdout_lines
 
     

@@ -24,6 +24,9 @@ add-apt-repository \
 apt-get -y update
 apt-get -y install docker-ce
 
+# add python installer
+apt-get -y install python-pip
+
 # copy hosts file
 cp /vagrant/provision/hosts /etc/ansible/hosts
 

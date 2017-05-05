@@ -1,8 +1,15 @@
 
 ---
-- name: Build an image by running ansible in a container
+- name: build an image by running ansible in a container
   hosts: myhost
 
   tasks:
-    - name: build the image
-      command: "docker run -d -p 80:80 --name webserver richarvey/nginx-nodejs"
+    - name: install docker-py
+      pip: name=docker-py state=present
+    - name: build docker image - nginx with sample node app
+      docker_container:
+        name: webserver
+        image: richarvey/nginx-nodejs
+        ports:
+          - "80:80"
+    

@@ -25,15 +25,26 @@ You need to have Vagrant installed on your host machine, which you can get <a hr
   .../vagrant-nginx-node# vagrant up --provision
 ~~~
 
-3. you can access the NodeJS app in your browser
+3. log into your Vagrant box:
+~~~
+  .../vagrant-nginx-node# vagrant ssh
+~~~
+
+3. change into the directory with the provisioning files and run the playbook
+
+~~~
+  ... vagrant@localhost$ cd /provision
+
+  ... vagrant@localhost/provision$ sudo ansible-playbook -i hosts playbook.yml
+~~~
+
+4. you can now access the NodeJS app in your browser
 
 	http://localhost:8080
     
 
-4. to log in and out of your Vagrant box:
+5. to log out of your Vagrant box:
 ~~~
-  .../vagrant-nginx-node# vagrant ssh
-  ...
   ... $ logout
 ~~~
 

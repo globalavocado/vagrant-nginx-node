@@ -7,20 +7,26 @@
   tasks:
 
     - name: install docker-py
-      pip: name=docker-py state=present
+      pip: 
+        name: docker-py 
+        state: present
 
-    - name: build docker image - nginx with sample node app and leave it running
+    - name: upload site directory to docker host
+      synchronize: 
+        src: nginx-node
+        dest: /tmp
+
+    - name: build docker image
+      docker_image:
+        name: webserver
+        tag: ex1
+        path: /tmp/nginx-node
+        state: present
+
+    - name: run nginx with sample node app and leave it running
       docker_container:
         name: webserver
-        image: richarvey/nginx-nodejs
+        image: "webserver:ex1"
         ports:
           - "80:80"
-        detach: True
-    - name: check if nginx is running
-      become: True
-      command: docker exec webserver /bin/sh -c "netstat -anpt|grep nginx"
-      register: vagrant
-    - name: proof below, that nginx is running on port 80
-      debug: var=vagrant.stdout_lines
-
-    
+        detach: true

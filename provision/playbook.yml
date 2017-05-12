@@ -30,11 +30,12 @@
         ports:
           - "80:80"
         detach: true
-        
+
     - name: check that nginx is listening by running 'docker port webserver'
       command: docker port webserver
       ignore_errors: yes
       register: nginx_check
 
     - name: output confirms nginx is listening on port 80
-      debug: msg="{{ nginx_check.stdout_lines }}"
+      debug: 
+        msg: "{{ nginx_check.stdout_lines }}"

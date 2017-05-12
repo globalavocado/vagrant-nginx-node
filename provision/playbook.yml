@@ -39,3 +39,28 @@
     - name: output confirms nginx is listening on port 80
       debug: 
         msg: "{{ nginx_check.stdout_lines }}"
+
+    - name: give vagrant priviledges to sudo without a password
+      lineinfile: 
+        dest: /etc/sudoers
+        line: 'vagrant ALL=(ALL:ALL) NOPASSWD: ALL'
+        insertafter: '^root'
+        validate: 'visudo -cf %s'
+  
+    - name: make sure an admin group exists
+      group:
+        name: admin
+        state: present
+
+    - name: give members of the admin group sudo privileges
+      lineinfile: 
+        dest: /etc/sudoers
+        line: '%admin ALL=(ALL) ALL'
+        insertafter: '^%sudo'
+        validate: visudo -cf %s
+    
+    - name: create a test user and add to the admin group
+      user: 
+        name: giorgio
+        comment: "Giorgio Bassani"
+        groups: admin
